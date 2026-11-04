@@ -52,13 +52,12 @@ export const siteConfig = {
   /** Ссылка на Google Drive. Пока она пустая, кнопка показывает «Жақында қолжетімді болады». */
   documentsUrl: "",
 
-  gallery: {
-    desktop: { initial: 6, step: 6 },
-    mobile: { initial: 4, step: 4 },
-  },
+  /** Сколько фотографий видно сразу. Кнопка «Көбірек көрсету» открывает все остальные. */
+  galleryInitial: 6,
 
   /** Какая часть главного фото важнее всего, если оно не помещается в рамку (CSS object-position). */
-  heroFocus: "50% 40%",
+  heroFocus: "50% 62%",
+  aboutFocus: "50% 70%",
 };
 
 export const telUrl = `tel:${siteConfig.phone.tel}`;

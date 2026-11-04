@@ -3,10 +3,13 @@ import { pillars } from "../shared/content-data";
 import { Leaf } from "../shared/decor";
 import { dict } from "../shared/i18n";
 import { MediaSlot } from "../shared/media-slot";
-import type { MediaFile } from "../shared/media-types";
+import type { ImageFile, MediaFile } from "../shared/media-types";
 import { Eyebrow } from "../shared/ui";
 
-export function MobileAbout({ locale, media }: { locale: Locale; media: MediaFile | null }) {
+export function MobileAbout({ locale, media, sides }: { locale: Locale; media: MediaFile | null; sides: [ImageFile | null, ImageFile | null] }) {
+  const sideImages = sides.filter((image): image is ImageFile => image !== null);
+  const hasSides = sideImages.length > 0;
+
   const t = dict[locale].about;
 
   return (
@@ -16,9 +19,17 @@ export function MobileAbout({ locale, media }: { locale: Locale; media: MediaFil
         <h2 className="title-section-m mt-1.5">{t.title}</h2>
 
         <div className="reveal relative mt-4">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem_1.25rem_2.5rem_1.25rem] shadow-soft">
-            <MediaSlot media={media} alt={siteConfig.name[locale]} sizes="92vw" fallback="garden" videoLabel={t.videoLabel} />
-            {!media && <p className="absolute right-3 bottom-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">{t.mediaPlaceholder}</p>}
+          {/* Коллаж: большое вертикальное фото и два небольших рядом */}
+          <div className={`grid gap-2.5 ${hasSides ? "aspect-[5/4] grid-cols-[1.4fr_1fr] grid-rows-2" : "aspect-[16/10]"}`}>
+            <div className={`relative overflow-hidden rounded-[2.5rem_1.25rem_2.5rem_1.25rem] shadow-soft ${hasSides ? "row-span-2" : ""}`}>
+              <MediaSlot media={media} alt={siteConfig.name[locale]} sizes={hasSides ? "56vw" : "92vw"} fallback="garden" focus={siteConfig.aboutFocus} videoLabel={t.videoLabel} />
+              {!media && <p className="absolute right-3 bottom-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">{t.mediaPlaceholder}</p>}
+            </div>
+            {sideImages.map((image) => (
+              <div key={image.src} className="relative overflow-hidden rounded-[1.25rem_2rem_1.25rem_2rem] shadow-soft">
+                <MediaSlot media={image} alt={siteConfig.name[locale]} sizes="70vw" fallback="art" />
+              </div>
+            ))}
           </div>
           <Leaf className="anim-bob absolute -top-3 right-3 w-8" />
         </div>

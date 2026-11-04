@@ -24,7 +24,6 @@ export function GalleryGrid({
   images,
   columns,
   initial,
-  step,
   sizes,
   gapClassName,
   radiusClassName,
@@ -33,7 +32,6 @@ export function GalleryGrid({
   images: ImageFile[];
   columns: number;
   initial: number;
-  step: number;
   sizes: string;
   gapClassName: string;
   radiusClassName: string;
@@ -54,6 +52,7 @@ export function GalleryGrid({
                 type="button"
                 onClick={() => setOpened(index)}
                 aria-label={t.open(index + 1)}
+                style={{ animationDelay: `${(index % initial) * 60}ms` }}
                 className={`lift anim-fade-up group relative block w-full overflow-hidden bg-mint shadow-soft ${radiusClassName}`}
               >
                 <Image
@@ -73,7 +72,7 @@ export function GalleryGrid({
 
       {visible < images.length && (
         <div className="mt-6 flex justify-center">
-          <button type="button" onClick={() => setVisible((v) => v + step)} className="btn btn-sun">
+          <button type="button" onClick={() => setVisible(images.length)} className="btn btn-sun">
             <Plus className="size-5" aria-hidden="true" />
             {t.more}
           </button>

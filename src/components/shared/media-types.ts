@@ -9,6 +9,8 @@ export type SiteMedia = {
   heroSide: [ImageFile | null, ImageFile | null];
   /** main-page2.*: фото или видео в разделе «О нас» */
   about: MediaFile | null;
+  /** about2.*, about3.*: небольшие фото рядом с основным в разделе «О нас» */
+  aboutSide: [ImageFile | null, ImageFile | null];
   /** logo.*: логотип вместо текстового знака */
   logo: ImageFile | null;
   /** image1.*, image2.*, …: галерея в порядке номеров */

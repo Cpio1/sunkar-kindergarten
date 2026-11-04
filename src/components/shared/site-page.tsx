@@ -60,7 +60,7 @@ export function SitePage({ locale }: { locale: Locale }) {
 
       <main id="main">
         <Responsive id="home" desktop={<Hero {...props} media={media} />} mobile={<MobileHero {...props} media={media} />} />
-        <Responsive id="about" desktop={<About {...props} media={media.about} />} mobile={<MobileAbout {...props} media={media.about} />} />
+        <Responsive id="about" desktop={<About {...props} media={media.about} sides={media.aboutSide} />} mobile={<MobileAbout {...props} media={media.about} sides={media.aboutSide} />} />
         <Responsive id="groups" desktop={<Groups {...props} />} mobile={<MobileGroups {...props} />} />
         <Responsive id="meals" desktop={<Meals {...props} />} mobile={<MobileMeals {...props} />} />
         <Responsive id="gallery" desktop={<Gallery {...props} images={media.gallery} />} mobile={<MobileGallery {...props} images={media.gallery} />} />

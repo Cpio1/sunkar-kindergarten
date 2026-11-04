@@ -16,8 +16,7 @@ export function MobileGallery({ locale, images }: { locale: Locale; images: Imag
           locale={locale}
           images={images}
           columns={2}
-          initial={siteConfig.gallery.mobile.initial}
-          step={siteConfig.gallery.mobile.step}
+          initial={siteConfig.galleryInitial}
           sizes="(min-width: 640px) 300px, 46vw"
           gapClassName="gap-2.5"
           radiusClassName="rounded-2xl"

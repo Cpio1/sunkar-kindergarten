@@ -53,6 +53,7 @@ export function getSiteMedia(): SiteMedia {
     hero: findImage("main-page"),
     heroSide: [findImage("hero2"), findImage("hero3")],
     about,
+    aboutSide: [findImage("about2"), findImage("about3")],
     logo: findImage("logo"),
     gallery,
   };

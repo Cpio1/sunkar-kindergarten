@@ -16,18 +16,15 @@ export function Gallery({ locale, images }: { locale: Locale; images: ImageFile[
         <h2 className="title-section mt-2 max-w-3xl">{t.title}</h2>
       </div>
       {images.length > 0 ? (
-        <div className="mx-auto max-w-3xl">
-          <GalleryGrid
-            locale={locale}
-            images={images}
-            columns={3}
-            initial={siteConfig.gallery.desktop.initial}
-            step={siteConfig.gallery.desktop.step}
-            sizes="(min-width: 1024px) 250px, 31vw"
-            gapClassName="gap-4"
-            radiusClassName="rounded-[1.5rem]"
-          />
-        </div>
+        <GalleryGrid
+          locale={locale}
+          images={images}
+          columns={4}
+          initial={siteConfig.galleryInitial}
+          sizes="(min-width: 1280px) 300px, 24vw"
+          gapClassName="gap-4"
+          radiusClassName="rounded-[1.5rem]"
+        />
       ) : (
         <GalleryEmpty
           locale={locale}

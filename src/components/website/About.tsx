@@ -3,11 +3,11 @@ import { pillars } from "../shared/content-data";
 import { Leaf, Star, Sun } from "../shared/decor";
 import { dict } from "../shared/i18n";
 import { MediaSlot } from "../shared/media-slot";
-import type { MediaFile } from "../shared/media-types";
+import type { ImageFile, MediaFile } from "../shared/media-types";
 import { OrganicFrame } from "../shared/organic-frame";
 import { Eyebrow } from "../shared/ui";
 
-export function About({ locale, media }: { locale: Locale; media: MediaFile | null }) {
+export function About({ locale, media, sides }: { locale: Locale; media: MediaFile | null; sides: [ImageFile | null, ImageFile | null] }) {
   const t = dict[locale].about;
 
   return (
@@ -15,12 +15,23 @@ export function About({ locale, media }: { locale: Locale; media: MediaFile | nu
       <div className="reveal relative mx-auto aspect-[4/5] w-full max-w-[min(100%,calc((100svh-8rem)*0.8),430px)]">
         <Sun className="absolute -top-[5%] -left-[5%] w-[28%]" />
         <OrganicFrame shape="arch" ringClassName="text-brand" className="size-full">
-          <MediaSlot media={media} alt={siteConfig.name[locale]} sizes="34vw" fallback="garden" videoLabel={t.videoLabel} />
+          <MediaSlot media={media} alt={siteConfig.name[locale]} sizes="(min-width: 1280px) 430px, 34vw" fallback="garden" focus={siteConfig.aboutFocus} videoLabel={t.videoLabel} />
         </OrganicFrame>
         {!media && (
           <p className="absolute right-4 bottom-4 left-4 rounded-2xl bg-white/90 px-3 py-2 text-center text-sm font-bold text-ink">{t.mediaPlaceholder}</p>
         )}
-        <Leaf className="anim-bob absolute -right-[6%] bottom-[12%] w-[13%]" />
+        {sides[0] ? (
+          <OrganicFrame shape="b" className="absolute -right-[9%] bottom-[3%] aspect-square w-[38%] drop-shadow-[0_14px_20px_rgba(33,122,96,0.28)]">
+            <MediaSlot media={sides[0]} alt={siteConfig.name[locale]} sizes="170px" fallback="books" />
+          </OrganicFrame>
+        ) : (
+          <Leaf className="anim-bob absolute -right-[6%] bottom-[12%] w-[13%]" />
+        )}
+        {sides[1] && (
+          <OrganicFrame shape="c" ringClassName="text-brand" className="absolute -left-[6%] bottom-[8%] aspect-square w-[32%] drop-shadow-[0_14px_20px_rgba(33,122,96,0.28)]">
+            <MediaSlot media={sides[1]} alt={siteConfig.name[locale]} sizes="280px" fallback="art" />
+          </OrganicFrame>
+        )}
       </div>
 
       <div className="reveal">
