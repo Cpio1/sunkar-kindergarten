@@ -1,0 +1,366 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #217a60;
+  --color-brand-deep: #175a47;
+  --color-mint: #eaf5e9;
+  --color-mint-strong: #cfe8d0;
+  --color-sun: #ffd66b;
+  --color-sun-soft: #fff2c9;
+  --color-milk: #fffdf6;
+  --color-ink: #22352c;
+  --color-ink-soft: #4a5f54;
+  --color-peach: #ffe3cf;
+  --color-sky: #dcf0f3;
+
+  --font-display: var(--font-display-face), "Arial", sans-serif;
+  --font-body: var(--font-body-face), "Arial", sans-serif;
+
+  --shadow-soft: 0 14px 34px -16px rgb(33 122 96 / 0.32);
+  --shadow-lift: 0 22px 44px -18px rgb(33 122 96 / 0.42);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--color-milk);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-weight: 500;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 2rem;
+  }
+
+  .wrap-m {
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
+    padding-inline: 1.125rem;
+  }
+
+  /* Заголовки масштабируются и по ширине, и по высоте: так секции помещаются в экран ноутбука. */
+  .title-hero {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.05rem, min(3.5vw, 6.6vh), 3.5rem);
+  }
+
+  .title-section {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    font-size: clamp(1.65rem, min(2.6vw, 5vh), 2.5rem);
+  }
+
+  .title-hero-m {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.6rem, 7.4vw, 2.5rem);
+  }
+
+  .title-section-m {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-size: clamp(1.32rem, 5.9vw, 2rem);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 3rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      background-color 0.22s ease,
+      color 0.22s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-sun {
+    background: var(--color-sun);
+    color: var(--color-ink);
+    box-shadow: 0 14px 28px -16px rgb(150 105 0 / 0.55);
+  }
+
+  .btn-ghost {
+    background: #fff;
+    color: var(--color-brand-deep);
+    box-shadow: inset 0 0 0 2px var(--color-mint-strong);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background: var(--color-brand-deep);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .btn-sun:hover {
+      background: #ffcd4f;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost:hover {
+      background: var(--color-mint);
+      transform: translateY(-2px);
+    }
+
+    .lift {
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .lift:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lift);
+    }
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------- Анимации: только для тех, кто не просил уменьшить движение ---------- */
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes drift {
+  50% {
+    transform: translateX(14px);
+  }
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes twinkle {
+  50% {
+    transform: scale(0.72) rotate(14deg);
+    opacity: 0.55;
+  }
+}
+
+@keyframes soar {
+  50% {
+    transform: translate(6px, -10px) rotate(-3deg);
+  }
+}
+
+@keyframes ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  70%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.965);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .anim-spin {
+    animation: spin-slow 46s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .anim-drift {
+    animation: drift 9s ease-in-out infinite;
+  }
+
+  .anim-bob {
+    animation: bob 4.5s ease-in-out infinite;
+  }
+
+  .anim-twinkle {
+    animation: twinkle 3.6s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .anim-soar {
+    animation: soar 6s ease-in-out infinite;
+  }
+
+  .anim-ping::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: ping-soft 2.8s ease-out infinite;
+    z-index: -1;
+  }
+
+  .anim-fade-up {
+    animation: fade-up 0.5s ease both;
+  }
+
+  .anim-fade-in {
+    animation: fade-in 0.22s ease both;
+  }
+
+  .anim-zoom {
+    animation: zoom-in 0.28s ease both;
+  }
+
+  .anim-sheet {
+    animation: sheet-in 0.26s ease both;
+  }
+
+  /*
+    Появление при прокрутке без JavaScript. Браузер без поддержки просто покажет
+    содержимое сразу, поэтому текст никогда не останется скрытым.
+  */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Модальные окна */
+dialog::backdrop {
+  background: rgb(23 45 36 / 0.86);
+}
+
+dialog.sheet::backdrop {
+  background: transparent;
+}
