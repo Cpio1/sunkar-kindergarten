@@ -50,7 +50,7 @@ export const siteConfig = {
   },
 
   /** Ссылка на Google Drive. Пока она пустая, кнопка показывает «Жақында қолжетімді болады». */
-  documentsUrl: "",
+  documentsUrl: "https://drive.google.com/drive/folders/1Jwugy90C3UOd216fEQnMMAPqQWL0r2Fk",
 
   /** Сколько фотографий видно сразу. Кнопка «Көбірек көрсету» открывает все остальные. */
   galleryInitial: 6,
